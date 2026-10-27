@@ -24,6 +24,7 @@ Checks images for a Markproof watermark and outputs `all_marked` (true or false)
 1. Install the node pack, either way:
    - **ComfyUI-Manager:** search for *Markproof* and click Install.
    - **comfy-cli:** `comfy node install comfyui-markproof`
+   - **Manually:** `cd ComfyUI/custom_nodes && git clone https://github.com/Ajinkya710/comfyui-markproof`
 
    No extra Python packages are needed.
 2. Create an API key on your [Markproof dashboard](https://markproof.co/dashboard) (250 free calls a month).
