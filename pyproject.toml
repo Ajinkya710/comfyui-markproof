@@ -1,0 +1,17 @@
+[project]
+name = "comfyui-markproof"
+description = "Mark AI-generated images for the EU AI Act (Article 50): invisible watermark + signed C2PA Content Credentials, saved straight from your workflow. Plus a watermark verify node."
+version = "0.1.0"
+license = { file = "LICENSE" }
+# Standard library + what ComfyUI already ships (torch, numpy, Pillow).
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/Ajinkya710/comfyui-markproof"
+Documentation = "https://markproof.co/docs"
+
+[tool.comfy]
+# Set to your Comfy Registry publisher ID (registry.comfy.org) before `comfy node publish`.
+PublisherId = "markproof"
+DisplayName = "Markproof"
+Icon = "https://markproof.co/apple-icon.png"

@@ -1,0 +1,4 @@
+# Development-only files, kept out of the archive ComfyUI users download.
+tests/
+.github/
+.gitignore
