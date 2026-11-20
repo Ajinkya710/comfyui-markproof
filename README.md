@@ -42,6 +42,17 @@ The key is read from the environment on purpose. ComfyUI saves node settings int
 - Images are processed in the EU and not stored by Markproof.
 - If the console reports that a watermark may not survive heavy editing, the image was very smooth or featureless. It's still marked and signed; rely on the C2PA manifest for it.
 
+## What this node pack accesses
+
+The whole client is about 100 lines in [`markproof_client.py`](markproof_client.py). In full:
+
+- **Environment:** it reads `MARKPROOF_API_KEY`. It also reads `MARKPROOF_BASE_URL`, which exists only so the tests can point at a local fake API. Unset, it calls `https://markproof.co/v1`.
+- **Network:** for each image, one HTTPS POST to `https://markproof.co/v1/mark` (Mark & Save) or `/v1/verify` (Verify Image). The request carries the image as a PNG, your `generator_name` and `model_name`, and the key in the `Authorization` header. No other data is sent and no other host is contacted.
+- **Files:** it writes the marked PNGs to ComfyUI's output folder. Nothing else.
+- **Nothing else:** no subprocesses, no `eval` or `exec`, no installing packages at runtime, no telemetry. It uses only the standard library plus the torch, numpy and Pillow that ComfyUI already ships.
+
+The Comfy Registry's automated scan flags any node that reads an environment variable and makes a network request, because that pattern can also be used to steal keys. Here both are what the node is for: it sends your own key only to the Markproof API.
+
 ## Development
 
 ```sh
